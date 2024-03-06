@@ -7,10 +7,9 @@ RUN apk add --no-cache python2 g++ make
 WORKDIR /app 
 
 #COPY . . 
-COPY --chown 1001:0 . .
+COPY --chmod=g=u --chown=1001:0 . .
 
-RUN yarn install --production \
- && chmod -R g=u .
+RUN yarn install --production
 
 CMD ["node", "src/index.js"] 
 
